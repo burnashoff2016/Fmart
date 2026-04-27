@@ -1,12 +1,16 @@
 import { Navbar } from "@/components/shared/navbar"
 import { Footer } from "@/components/shared/footer"
-import { PRODUCTS } from "@/lib/products"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { ContactForm } from "@/components/shared/contact-form"
+import { getProducts } from "@/lib/product-store"
 
-export default function RobotyMojshhikiCategory() {
+export const dynamic = "force-dynamic"
+
+export default async function RobotyMojshhikiCategory() {
+  const products = await getProducts()
+
   return (
     <div className="site-shell min-h-screen">
       <Navbar />
@@ -27,7 +31,7 @@ export default function RobotyMojshhikiCategory() {
 
         <section className="px-6 pb-20">
           <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-3">
-              {PRODUCTS.map((product) => (
+              {products.map((product) => (
                 <Link key={product.slug} href={`/products/${product.slug}`} className="group surface-card overflow-hidden rounded-3xl transition hover:-translate-y-1">
                   <div className="relative aspect-square bg-[#f0f1eb] dark:bg-white/5">
                     <Image src={product.image} alt={product.name} fill className="object-contain p-4" />

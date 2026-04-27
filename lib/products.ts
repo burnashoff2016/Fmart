@@ -9,8 +9,12 @@ export interface Product {
   oldPrice?: string
   isNew?: boolean
   isAvailable: boolean
+  isPublished?: boolean
+  sortOrder?: number
   tag?: string
   image: string
+  seoTitle?: string
+  seoDescription?: string
   features: string[]
   specs: {
     label: string
@@ -20,7 +24,7 @@ export interface Product {
     value: string
     label: string
   }[]
-}
+  }
 
 export const PRODUCTS: Product[] = [
   {

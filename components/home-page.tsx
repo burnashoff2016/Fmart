@@ -8,7 +8,7 @@ import { Footer } from "./shared/footer"
 import { ContactForm } from "./shared/contact-form"
 import { HeroMediaStage } from "./hero-media-stage"
 import { AnimatedContent } from "@/components/reactbits/animated-content"
-import { PRODUCTS, getFeaturedProduct } from "@/lib/products"
+import type { Product } from "@/lib/products"
 
 const FEATURES = [
   { icon: Zap, title: "5300 Па", desc: "Вакуумная фиксация и стабильная тяга" },
@@ -30,9 +30,7 @@ const HERO_MEDIA = {
   modelSrc: undefined,
 }
 
-export function HomePage() {
-  const featured = getFeaturedProduct()
-
+export function HomePage({ products, featured }: { products: Product[]; featured: Product }) {
   return (
     <div className="site-shell min-h-screen">
       <Navbar />
@@ -106,7 +104,7 @@ export function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {PRODUCTS.map((product, index) => (
+              {products.map((product, index) => (
                 <AnimatedContent key={product.slug} delay={index * 0.06} distance={30}>
                   <Link href={`/products/${product.slug}`} className="group surface-card overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-1">
                   <div className="relative aspect-square bg-[#f0f1eb] dark:bg-white/5">

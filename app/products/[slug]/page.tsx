@@ -6,42 +6,46 @@ import { ArrowLeft, Check, Shield, Truck, RotateCcw } from "lucide-react"
 import { Navbar } from "@/components/shared/navbar"
 import { Footer } from "@/components/shared/footer"
 import { ContactForm } from "@/components/shared/contact-form"
-import { PRODUCTS, getProductBySlug } from "@/lib/products"
 import { AddToCartButton } from "@/app/components/cart/add-to-cart-button"
+import { getProductBySlugFromStore, getProducts } from "@/lib/product-store"
+
+export const dynamic = "force-dynamic"
 
 type PageProps = {
   params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
-  return PRODUCTS.map((product) => ({
+  const products = await getProducts()
+  return products.map((product) => ({
     slug: product.slug,
   }))
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const product = getProductBySlug(slug)
+  const product = await getProductBySlugFromStore(slug)
 
   if (!product) {
     return { title: "Продукт не найден" }
   }
 
   return {
-    title: `${product.name} — купить робот-мойщик окон | FMart Россия`,
-    description: product.description,
+    title: product.seoTitle || `${product.name} — купить робот-мойщик окон | FMart Россия`,
+    description: product.seoDescription || product.description,
   }
 }
 
 export default async function ProductPage({ params }: PageProps) {
   const { slug } = await params
-  const product = getProductBySlug(slug)
+  const product = await getProductBySlugFromStore(slug)
 
   if (!product) {
     notFound()
   }
 
-  const otherProducts = PRODUCTS.filter((item) => item.slug !== slug).slice(0, 3)
+  const products = await getProducts()
+  const otherProducts = products.filter((item) => item.slug !== slug).slice(0, 3)
 
   return (
     <div className="site-shell min-h-screen">

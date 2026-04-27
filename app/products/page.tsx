@@ -6,14 +6,18 @@ import { Navbar } from "@/components/shared/navbar"
 import { Footer } from "@/components/shared/footer"
 import { ContactForm } from "@/components/shared/contact-form"
 import { AddToCartButton } from "@/app/components/cart/add-to-cart-button"
-import { PRODUCTS } from "@/lib/products"
+import { getProducts } from "@/lib/product-store"
+
+export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
   title: "Каталог роботов-мойщиков окон — FMart Россия",
   description: "Каталог роботов-мойщиков окон FMart. T11, T10 PRO, T9, T8 PRO, W7, W6 — найдите идеальную модель для ваших задач.",
 }
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const products = await getProducts()
+
   return (
     <div className="site-shell min-h-screen">
       <Navbar />
@@ -35,7 +39,7 @@ export default function ProductsPage() {
 
         <section className="px-6 pb-20">
           <div className="mx-auto grid max-w-6xl gap-6">
-            {PRODUCTS.map((product) => (
+            {products.map((product) => (
               <article key={product.slug} className="surface-card overflow-hidden rounded-3xl">
                 <div className="grid gap-0 md:grid-cols-[0.9fr_1.1fr]">
                   <Link href={`/products/${product.slug}`} className="group relative min-h-[320px] bg-[#f0f1eb] dark:bg-white/5 md:min-h-[420px]">
