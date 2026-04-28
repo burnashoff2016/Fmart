@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { redirect } from "next/navigation"
-import { ArrowRight, Boxes, EyeOff, PackageCheck, Sparkles } from "lucide-react"
+import { ArrowRight, Boxes, CircleAlert, EyeOff, Image as ImageIcon, PackageCheck, Sparkles, Store, Tags } from "lucide-react"
 import { AdminShell } from "@/components/admin/admin-shell"
 import { isAdminAuthenticated } from "@/lib/admin-auth"
 import { getProducts } from "@/lib/product-store"
@@ -15,30 +15,64 @@ export default async function AdminDashboardPage() {
   const available = products.filter((product) => product.isAvailable)
   const hidden = products.filter((product) => product.isPublished === false)
   const featured = products.filter((product) => product.isNew || product.tag)
+  const withoutGallery = products.filter((product) => !product.gallery?.length)
+  const withoutSeo = products.filter((product) => !product.seoTitle || !product.seoDescription)
+  const withoutStock = products.filter((product) => !product.isAvailable)
 
   const stats = [
     { label: "Всего товаров", value: products.length, icon: Boxes },
     { label: "Опубликовано", value: published.length, icon: PackageCheck },
-    { label: "Скрыто", value: hidden.length, icon: EyeOff },
-    { label: "С метками", value: featured.length, icon: Sparkles },
+    { label: "В наличии", value: available.length, icon: Store },
+    { label: "С метками", value: featured.length, icon: Tags },
+  ]
+
+  const attentionItems = [
+    { label: "Скрытые товары", value: hidden.length, icon: EyeOff },
+    { label: "Нет в наличии", value: withoutStock.length, icon: CircleAlert },
+    { label: "Без галереи", value: withoutGallery.length, icon: ImageIcon },
+    { label: "SEO не заполнено", value: withoutSeo.length, icon: Sparkles },
   ]
 
   return (
     <AdminShell>
-      <section className="cart-shell relative overflow-hidden rounded-[2rem] p-8 md:p-10">
-        <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-slate-300/28 blur-3xl dark:bg-white/10" />
-        <div className="relative flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="section-eyebrow mb-4">Панель управления</p>
-            <h1 className="text-5xl font-black leading-none md:text-6xl">FMART Admin</h1>
-            <p className="cart-muted mt-5 max-w-2xl text-base leading-7">
-              Управляйте товарами, публикацией и порядком моделей в каталоге, не меняя код публичного сайта.
-            </p>
+      <section className="grid gap-5 xl:grid-cols-[1fr_360px]">
+        <div className="cart-shell relative overflow-hidden rounded-[2rem] p-7 md:p-9">
+          <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-slate-300 via-white to-slate-400/70 dark:from-white/10 dark:via-white/30 dark:to-white/10" />
+          <div className="relative flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="section-eyebrow mb-4">Панель управления</p>
+              <h1 className="text-4xl font-black leading-none text-[#111315] dark:text-white md:text-5xl">FMART Admin</h1>
+              <p className="cart-muted mt-5 max-w-2xl text-base leading-7">
+                Управляйте товарами, публикацией, ценами и наполнением каталога из одного рабочего экрана.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Link href="/admin/products" className="ink-button inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-black">
+                Каталог <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link href="/admin/products/new" className="brand-button inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-black">
+                Добавить товар <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
-          <Link href="/admin/products/new" className="brand-button inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-black">
-            Добавить товар <ArrowRight className="h-4 w-4" />
-          </Link>
         </div>
+
+        <aside className="rounded-[2rem] bg-[#111315] p-6 text-white shadow-soft">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-white/48">Состояние витрины</p>
+          <div className="mt-5 grid grid-cols-2 gap-3">
+            <div className="rounded-2xl bg-white/8 p-4 ring-1 ring-white/10">
+              <div className="text-3xl font-black">{published.length}</div>
+              <div className="mt-1 text-xs font-bold text-white/56">видно на сайте</div>
+            </div>
+            <div className="rounded-2xl bg-white/8 p-4 ring-1 ring-white/10">
+              <div className="text-3xl font-black">{available.length}</div>
+              <div className="mt-1 text-xs font-bold text-white/56">доступно к продаже</div>
+            </div>
+          </div>
+          <Link href="/products" className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-black text-[#111315] transition hover:bg-[#ffd600]">
+            Открыть витрину <ArrowRight className="h-4 w-4" />
+          </Link>
+        </aside>
       </section>
 
       <section className="mt-6 grid gap-4 md:grid-cols-4">
@@ -46,7 +80,7 @@ export default async function AdminDashboardPage() {
           const Icon = item.icon
           return (
             <div key={item.label} className="surface-card rounded-3xl p-5">
-              <Icon className="mb-5 h-7 w-7 text-[#ffd600]" />
+              <Icon className="mb-5 h-7 w-7 text-[#65707b] dark:text-[#ffd600]" />
               <div className="text-4xl font-black text-[#111315] dark:text-white">{item.value}</div>
               <div className="mt-2 text-sm font-semibold text-[#656b72] dark:text-slate-300">{item.label}</div>
             </div>
@@ -54,24 +88,47 @@ export default async function AdminDashboardPage() {
         })}
       </section>
 
-      <section className="mt-6 surface-card rounded-[2rem] p-6">
-        <div className="mb-5 flex items-center justify-between gap-4">
-          <h2 className="text-2xl font-black text-[#111315] dark:text-white">Последние товары</h2>
-          <Link href="/admin/products" className="text-sm font-black text-[#65707b] transition hover:text-[#111315] dark:text-[#ffd600] dark:hover:text-white">
-            Открыть все
-          </Link>
-        </div>
-        <div className="grid gap-3">
-          {products.slice(0, 5).map((product) => (
-            <Link key={product.slug} href={`/admin/products/${product.slug}`} className="soft-panel flex items-center justify-between gap-4 rounded-2xl p-4 transition hover:border-[#ffd600]/45">
-              <span>
-                <span className="block font-black text-[#111315] dark:text-white">{product.name}</span>
-                <span className="mt-1 block text-xs text-[#656b72] dark:text-slate-300">/{product.slug}</span>
-              </span>
-              <span className="text-sm font-black text-[#111315] dark:text-white">{product.price} ₽</span>
+      <section className="mt-6 grid gap-5 xl:grid-cols-[1fr_360px]">
+        <div className="surface-card rounded-[2rem] p-6">
+          <div className="mb-5 flex items-center justify-between gap-4">
+            <h2 className="text-2xl font-black text-[#111315] dark:text-white">Рабочий каталог</h2>
+            <Link href="/admin/products" className="text-sm font-black text-[#65707b] transition hover:text-[#111315] dark:text-[#ffd600] dark:hover:text-white">
+              Открыть все
             </Link>
-          ))}
+          </div>
+          <div className="grid gap-3">
+            {products.slice(0, 6).map((product) => (
+              <Link key={product.slug} href={`/admin/products/${product.slug}`} className="soft-panel grid gap-4 rounded-2xl p-4 transition hover:border-[#ffd600]/45 sm:grid-cols-[1fr_auto_auto] sm:items-center">
+                <span>
+                  <span className="block font-black text-[#111315] dark:text-white">{product.name}</span>
+                  <span className="mt-1 block text-xs text-[#656b72] dark:text-slate-300">/{product.slug}</span>
+                </span>
+                <span className={`w-fit rounded-full px-3 py-1 text-xs font-black ${product.isPublished === false ? "bg-red-500/10 text-red-500 dark:text-red-200" : "bg-emerald-500/12 text-emerald-700 dark:text-emerald-300"}`}>
+                  {product.isPublished === false ? "Скрыт" : "Опубликован"}
+                </span>
+                <span className="text-sm font-black text-[#111315] dark:text-white">{product.price} ₽</span>
+              </Link>
+            ))}
+          </div>
         </div>
+
+        <aside className="surface-card rounded-[2rem] p-6">
+          <h2 className="text-2xl font-black text-[#111315] dark:text-white">Требует внимания</h2>
+          <div className="mt-5 grid gap-3">
+            {attentionItems.map((item) => {
+              const Icon = item.icon
+              return (
+                <div key={item.label} className="flex items-center justify-between gap-4 rounded-2xl border border-border bg-white/45 p-4 dark:bg-white/5">
+                  <span className="flex items-center gap-3">
+                    <Icon className="h-5 w-5 text-[#65707b] dark:text-[#ffd600]" />
+                    <span className="text-sm font-bold text-[#111315] dark:text-white">{item.label}</span>
+                  </span>
+                  <span className="text-lg font-black text-[#111315] dark:text-white">{item.value}</span>
+                </div>
+              )
+            })}
+          </div>
+        </aside>
       </section>
     </AdminShell>
   )
