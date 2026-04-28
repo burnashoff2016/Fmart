@@ -19,9 +19,9 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
   return (
     <div className="site-shell grid min-h-screen place-items-center px-6 py-12">
       <main className="cart-shell relative w-full max-w-md overflow-hidden rounded-[2rem] p-8">
-        <div className="absolute -right-20 -top-20 h-52 w-52 rounded-full bg-[#ffd600]/16 blur-3xl" />
+        <div className="absolute -right-20 -top-20 h-52 w-52 rounded-full bg-slate-300/28 blur-3xl dark:bg-white/10" />
         <div className="relative">
-          <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#ffd600] text-[#111315] shadow-[0_0_30px_rgba(255,214,0,0.28)]">
+          <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-200 text-[#111315] shadow-[0_0_30px_rgba(148,163,184,0.22)] ring-1 ring-slate-300/70 dark:bg-white/10 dark:text-[#ffd600] dark:ring-white/12">
             <LockKeyhole className="h-7 w-7" />
           </div>
           <p className="section-eyebrow mb-4">FMART Admin</p>
@@ -43,7 +43,7 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
           )}
 
           {showDevHint && (
-            <div className="mt-5 flex gap-3 rounded-2xl border border-[#ffd600]/20 bg-[#ffd600]/10 px-4 py-3 text-sm text-[#ffd600]">
+            <div className="mt-5 flex gap-3 rounded-2xl border border-slate-300 bg-slate-200/70 px-4 py-3 text-sm text-[#65707b] dark:border-white/12 dark:bg-white/8 dark:text-[#ffd600]">
               <ShieldCheck className="h-5 w-5 shrink-0" />
               Для локальной разработки пароль: fmart-admin
             </div>

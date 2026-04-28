@@ -28,7 +28,7 @@ export function Navbar() {
     <nav className="site-navbar fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-2xl">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-          <span className="relative flex h-11 w-[168px] items-center rounded-full bg-white px-5 shadow-[0_10px_35px_rgba(255,214,0,0.12)] ring-1 ring-white/20">
+          <span className="relative flex h-11 w-[168px] items-center rounded-full bg-white px-5 shadow-[0_10px_35px_rgba(18,20,22,0.10)] ring-1 ring-black/10 dark:ring-white/12">
             <Image src="/images/fmart-logo.png" alt="FMart" width={146} height={40} className="h-8 w-[146px] object-fill" priority />
           </span>
         </Link>

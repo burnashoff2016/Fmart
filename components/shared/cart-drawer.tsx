@@ -30,11 +30,11 @@ export function CartDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () =
       >
         <div className="relative overflow-hidden border-b border-[var(--cart-border)] px-5 py-5">
           <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#ffd600]/14 blur-3xl" />
-          <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-[#ffd600]/70 to-transparent" />
+          <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-slate-300/70 to-transparent dark:via-white/14" />
 
           <div className="relative flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#ffd600] text-[#111315] shadow-[0_0_28px_rgba(255,214,0,0.32)]">
+              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#ffd600] text-[#111315] shadow-[0_0_28px_rgba(148,163,184,0.22)]">
                 <ShoppingBag className="h-5 w-5" />
               </span>
               <div>
@@ -52,8 +52,8 @@ export function CartDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () =
               <div className="cart-muted text-xs">Позиций</div>
               <div className="mt-1 text-xl font-black">{items.length}</div>
             </div>
-            <div className="rounded-2xl border border-[#ffd600]/20 bg-[#ffd600]/10 p-3">
-              <div className="text-xs text-[#ffd600]">Товаров</div>
+            <div className="rounded-2xl border border-slate-300 bg-slate-200/70 p-3 dark:border-white/12 dark:bg-white/8">
+              <div className="text-xs text-[#65707b] dark:text-[#ffd600]">Товаров</div>
               <div className="mt-1 text-xl font-black">{totalItems}</div>
             </div>
           </div>

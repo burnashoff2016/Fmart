@@ -26,7 +26,7 @@ export default async function AdminDashboardPage() {
   return (
     <AdminShell>
       <section className="cart-shell relative overflow-hidden rounded-[2rem] p-8 md:p-10">
-        <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-[#ffd600]/16 blur-3xl" />
+        <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-slate-300/28 blur-3xl dark:bg-white/10" />
         <div className="relative flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="section-eyebrow mb-4">Панель управления</p>

@@ -62,8 +62,8 @@ export default function CheckoutPage() {
       <main className="px-6 pb-20 pt-36">
         <section className="mx-auto max-w-6xl">
           <div className="cart-shell relative overflow-hidden rounded-[2rem] p-8 md:p-10">
-            <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-[#ffd600]/16 blur-3xl" />
-            <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-[#ffd600]/60 to-transparent" />
+            <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-slate-300/28 blur-3xl dark:bg-white/10" />
+            <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-slate-300/70 to-transparent dark:via-white/14" />
             <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
               <div>
                 <p className="section-eyebrow mb-4">Secure checkout</p>
@@ -170,7 +170,7 @@ export default function CheckoutPage() {
             </div>
 
             <aside className="cart-shell h-fit overflow-hidden rounded-3xl">
-              <div className="border-b border-[var(--cart-border)] bg-[#ffd600]/10 p-6">
+              <div className="border-b border-[var(--cart-border)] bg-slate-200/70 p-6 dark:bg-white/8">
                 <Truck className="mb-4 h-7 w-7 text-[#ffd600]" />
                 <h2 className="text-2xl font-black">Ваш заказ</h2>
                 <p className="cart-muted mt-2 text-sm leading-6">Официальная продукция FMART с сервисной поддержкой.</p>

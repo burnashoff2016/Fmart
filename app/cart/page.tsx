@@ -17,7 +17,7 @@ export default function CartPage() {
         <section className="mx-auto max-w-6xl">
           <div className="cart-shell relative overflow-hidden rounded-[2rem] p-8 md:p-10">
             <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-[#ffd600]/14 blur-3xl" />
-            <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-[#ffd600]/60 to-transparent" />
+            <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-slate-300/70 to-transparent dark:via-white/14" />
             <div className="relative grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
               <div>
                 <p className="section-eyebrow mb-4">Корзина</p>
@@ -31,8 +31,8 @@ export default function CartPage() {
                   <div className="cart-muted text-xs">Позиций</div>
                   <div className="mt-1 text-2xl font-black">{items.length}</div>
                 </div>
-                <div className="rounded-2xl border border-[#ffd600]/20 bg-[#ffd600]/10 p-4">
-                  <div className="text-xs text-[#ffd600]">Товаров</div>
+                <div className="rounded-2xl border border-slate-300 bg-slate-200/70 p-4 dark:border-white/12 dark:bg-white/8">
+                  <div className="text-xs text-[#65707b] dark:text-[#ffd600]">Товаров</div>
                   <div className="mt-1 text-2xl font-black">{items.reduce((sum, item) => sum + item.quantity, 0)}</div>
                 </div>
               </div>
@@ -60,7 +60,7 @@ export default function CartPage() {
                       <Image src={item.product.image} alt={item.product.name} fill className="object-contain p-4" />
                     </div>
                     <div className="mt-4 sm:mt-0">
-                      <div className="mb-2 inline-flex rounded-full border border-[#ffd600]/20 bg-[#ffd600]/10 px-3 py-1 text-xs font-bold text-[#ffd600]">
+                      <div className="mb-2 inline-flex rounded-full border border-slate-300 bg-slate-100/70 px-3 py-1 text-xs font-bold text-[#65707b] dark:border-white/12 dark:bg-white/8 dark:text-[#ffd600]">
                         FMART
                       </div>
                       <h2 className="text-2xl font-black">{item.product.name}</h2>
@@ -85,7 +85,7 @@ export default function CartPage() {
               </div>
 
               <aside className="cart-shell h-fit overflow-hidden rounded-3xl">
-                <div className="border-b border-[var(--cart-border)] bg-[#ffd600]/10 p-6">
+                <div className="border-b border-[var(--cart-border)] bg-slate-200/70 p-6 dark:bg-white/8">
                   <Sparkles className="mb-4 h-7 w-7 text-[#ffd600]" />
                   <h2 className="text-2xl font-black">Итого</h2>
                   <p className="cart-muted mt-2 text-sm leading-6">Быстрое оформление заказа без реального платежа.</p>

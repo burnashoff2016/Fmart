@@ -33,9 +33,9 @@ export default function DeliveryPage() {
             </div>
 
             <div className="cart-shell relative overflow-hidden rounded-[2rem] p-6">
-              <div className="absolute -right-20 -top-20 h-52 w-52 rounded-full bg-[#ffd600]/16 blur-3xl" />
+              <div className="absolute -right-20 -top-20 h-52 w-52 rounded-full bg-slate-300/28 blur-3xl dark:bg-white/10" />
               <div className="relative">
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#ffd600] text-[#111315] shadow-[0_0_30px_rgba(255,214,0,0.28)]">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-200 text-[#111315] shadow-[0_0_30px_rgba(148,163,184,0.22)] ring-1 ring-slate-300/70 dark:bg-white/10 dark:text-[#ffd600] dark:ring-white/12">
                   <Truck className="h-7 w-7" />
                 </div>
                 <h2 className="text-3xl font-black">Бережная доставка техники</h2>
