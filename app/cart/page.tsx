@@ -3,12 +3,40 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Minus, Plus, ShieldCheck, Sparkles, Trash2, Zap } from "lucide-react"
+import { useState } from "react"
+import { toast } from "sonner"
 import { Navbar } from "@/components/shared/navbar"
 import { Footer } from "@/components/shared/footer"
+import { ConfirmRemoveModal } from "@/components/shared/confirm-remove-modal"
 import { useCart } from "@/contexts/CartProvider"
 
 export default function CartPage() {
   const { items, totalPrice, updateQuantity, removeFromCart } = useCart()
+  const [removeSlug, setRemoveSlug] = useState<string | null>(null)
+  const removeItem = items.find((item) => item.slug === removeSlug)
+
+  const confirmRemove = (slug: string) => {
+    setRemoveSlug(slug)
+  }
+
+  const handleRemoveConfirmed = () => {
+    if (!removeItem) return
+
+    removeFromCart(removeItem.slug)
+    toast.success("Товар удалён из корзины", {
+      description: removeItem.product.name,
+    })
+    setRemoveSlug(null)
+  }
+
+  const decreaseQuantity = (slug: string, quantity: number) => {
+    if (quantity <= 1) {
+      confirmRemove(slug)
+      return
+    }
+
+    updateQuantity(slug, quantity - 1)
+  }
 
   return (
     <div className="site-shell min-h-screen">
@@ -68,7 +96,7 @@ export default function CartPage() {
                     </div>
                     <div className="mt-5 flex items-center justify-between gap-4 sm:mt-0 sm:justify-end">
                       <div className="cart-control flex items-center gap-2 rounded-full p-1">
-                        <button onClick={() => updateQuantity(item.slug, item.quantity - 1)} className="rounded-full p-2 text-[var(--cart-muted)] transition hover:bg-[var(--cart-panel-strong)] hover:text-[var(--cart-foreground)]" aria-label="Уменьшить количество">
+                        <button onClick={() => decreaseQuantity(item.slug, item.quantity)} className="rounded-full p-2 text-[var(--cart-muted)] transition hover:bg-[var(--cart-panel-strong)] hover:text-[var(--cart-foreground)]" aria-label="Уменьшить количество">
                           <Minus className="h-4 w-4" />
                         </button>
                         <span className="w-8 text-center text-sm font-black">{item.quantity}</span>
@@ -76,7 +104,7 @@ export default function CartPage() {
                           <Plus className="h-4 w-4" />
                         </button>
                       </div>
-                      <button onClick={() => removeFromCart(item.slug)} className="rounded-full border border-red-500/20 bg-red-500/8 p-2 text-red-300 transition hover:bg-red-500/16 hover:text-red-200" aria-label="Удалить из корзины">
+                      <button onClick={() => confirmRemove(item.slug)} className="rounded-full border border-red-500/20 bg-red-500/8 p-2 text-red-300 transition hover:bg-red-500/16 hover:text-red-200" aria-label="Удалить из корзины">
                         <Trash2 className="h-5 w-5" />
                       </button>
                     </div>
@@ -110,6 +138,13 @@ export default function CartPage() {
           )}
         </section>
       </main>
+      {removeItem && (
+        <ConfirmRemoveModal
+          productName={removeItem.product.name}
+          onCancel={() => setRemoveSlug(null)}
+          onConfirm={handleRemoveConfirmed}
+        />
+      )}
       <Footer />
     </div>
   )

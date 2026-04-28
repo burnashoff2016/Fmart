@@ -7,6 +7,7 @@ import path from "node:path"
 import { randomUUID } from "node:crypto"
 import { clearAdminSession, createAdminSession, getAdminPassword, isAdminAuthenticated } from "@/lib/admin-auth"
 import { deleteProduct, setProductPublished, slugifyProduct, upsertProduct } from "@/lib/product-store"
+import { SITE_BACKGROUND_MODES, updateSiteSettings, type SiteBackgroundMode } from "@/lib/site-settings"
 import type { Product } from "@/lib/products"
 
 function parseBoolean(value: FormDataEntryValue | null) {
@@ -164,4 +165,16 @@ export async function toggleProductPublishedAction(formData: FormData) {
     revalidatePath("/product-category/roboty-mojshhiki")
   }
   redirect("/admin/products")
+}
+
+export async function saveSiteBackgroundAction(formData: FormData) {
+  await requireAdmin()
+  const backgroundMode = String(formData.get("backgroundMode") ?? "auto") as SiteBackgroundMode
+
+  await updateSiteSettings({
+    backgroundMode: SITE_BACKGROUND_MODES.includes(backgroundMode) ? backgroundMode : "auto",
+  })
+
+  revalidatePath("/", "layout")
+  redirect("/admin")
 }

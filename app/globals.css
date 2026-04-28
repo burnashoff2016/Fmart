@@ -180,6 +180,50 @@
     color: var(--foreground);
   }
 
+  body[data-site-background="soft-gray"] .site-shell {
+    background:
+      linear-gradient(180deg, rgba(203, 213, 225, 0.44), transparent 540px),
+      radial-gradient(circle at 18% 0%, rgba(226, 232, 240, 0.68), transparent 28rem),
+      radial-gradient(circle at 88% 10%, rgba(148, 163, 184, 0.18), transparent 24rem),
+      var(--background);
+  }
+
+  body[data-site-background="clean"] .site-shell {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.26), transparent 460px),
+      var(--background);
+  }
+
+  body[data-site-background="contrast"] .site-shell {
+    background:
+      linear-gradient(180deg, rgba(148, 163, 184, 0.38), transparent 520px),
+      radial-gradient(circle at 10% 4%, rgba(15, 23, 42, 0.10), transparent 25rem),
+      radial-gradient(circle at 88% 8%, rgba(255, 214, 0, 0.10), transparent 20rem),
+      var(--background);
+  }
+
+  .dark body[data-site-background="soft-gray"] .site-shell {
+    background:
+      linear-gradient(180deg, rgba(30, 41, 59, 0.48), transparent 520px),
+      radial-gradient(circle at 16% 4%, rgba(255, 255, 255, 0.08), transparent 26rem),
+      radial-gradient(circle at 86% 10%, rgba(148, 163, 184, 0.12), transparent 22rem),
+      var(--background);
+  }
+
+  .dark body[data-site-background="clean"] .site-shell {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 420px),
+      var(--background);
+  }
+
+  .dark body[data-site-background="contrast"] .site-shell {
+    background:
+      linear-gradient(180deg, rgba(15, 23, 42, 0.9), transparent 540px),
+      radial-gradient(circle at 10% 4%, rgba(255, 214, 0, 0.12), transparent 21rem),
+      radial-gradient(circle at 84% 6%, rgba(255, 255, 255, 0.08), transparent 26rem),
+      var(--background);
+  }
+
   .site-navbar {
     background: var(--nav-bg);
     border-color: var(--nav-border);
@@ -261,6 +305,51 @@
   .cart-control {
     background: var(--cart-control);
     border: 1px solid var(--cart-border);
+  }
+
+  .add-to-cart-button {
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0);
+    transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease;
+  }
+
+  .add-to-cart-button:active {
+    transform: scale(0.97);
+  }
+
+  .add-to-cart-button.is-added {
+    animation: add-to-cart-press 520ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .add-to-cart-button.is-added::after {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.62), transparent 42%);
+    opacity: 0;
+    animation: add-to-cart-flash 620ms ease;
+  }
+
+  .add-to-cart-button__icon {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    margin-right: 0.5rem;
+  }
+
+  .add-to-cart-button span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .product-gallery__image {
+    animation: product-gallery-next 320ms ease-out;
+    will-change: opacity, transform;
+  }
+
+  .product-gallery__image[data-direction="prev"] {
+    animation-name: product-gallery-prev;
   }
 
   .hero-media-stage {
@@ -353,7 +442,10 @@
 
   @media (prefers-reduced-motion: reduce) {
     .hero-media-stage__poster,
-    .hero-media-stage__scan {
+    .hero-media-stage__scan,
+    .product-gallery__image,
+    .add-to-cart-button.is-added,
+    .add-to-cart-button.is-added::after {
       animation: none;
     }
   }
@@ -385,6 +477,61 @@
     100% {
       opacity: 0;
       transform: translateX(56%);
+    }
+  }
+
+  @keyframes add-to-cart-press {
+    0% {
+      transform: scale(1);
+    }
+
+    36% {
+      transform: scale(0.96);
+      filter: brightness(1.02);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes add-to-cart-flash {
+    0% {
+      opacity: 0;
+      transform: scale(0.28);
+    }
+
+    38% {
+      opacity: 0.8;
+    }
+
+    100% {
+      opacity: 0;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes product-gallery-next {
+    0% {
+      opacity: 0;
+      transform: scale(0.985);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes product-gallery-prev {
+    0% {
+      opacity: 0;
+      transform: scale(0.985);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 

@@ -63,8 +63,8 @@ export default async function ProductPage({ params }: PageProps) {
         </div>
 
         <section className="px-6 pb-16">
-          <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-            <div className="relative">
+          <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,500px)_minmax(0,1fr)] lg:items-start lg:justify-center">
+            <div className="relative w-full lg:-mt-4 lg:justify-self-end">
               {product.oldPrice && (
                 <span className="absolute left-5 top-5 z-10 rounded-full bg-[#e11d48] px-4 py-2 text-xs font-black text-white">
                   -20%
@@ -78,7 +78,7 @@ export default async function ProductPage({ params }: PageProps) {
               <ProductGallery images={product.gallery ?? [product.image]} name={product.name} />
             </div>
 
-            <div>
+            <div className="lg:pt-6">
               <p className="section-eyebrow mb-4">{product.tagline}</p>
               <h1 className="text-balance text-5xl font-black leading-[1] text-[#111315] dark:text-white md:text-6xl">
                 {product.name}

@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
+import { Toaster } from '@/components/ui/sonner'
+import { getSiteSettings } from '@/lib/site-settings'
 import './globals.css'
 
 const inter = Inter({ 
@@ -16,14 +18,16 @@ export const metadata: Metadata = {
 
 import { CartProvider } from '@/contexts/CartProvider'
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const settings = await getSiteSettings()
+
   return (
     <html lang="ru" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased bg-background`}>
+      <body className={`${inter.variable} font-sans antialiased bg-background`} data-site-background={settings.backgroundMode}>
         <CartProvider>
         <ThemeProvider
           attribute="class"
@@ -33,6 +37,7 @@ export default function RootLayout({
           disableTransitionOnChange={false}
         >
           {children}
+          <Toaster position="bottom-right" richColors closeButton />
           </ThemeProvider>
         </CartProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}

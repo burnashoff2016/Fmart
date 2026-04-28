@@ -3,11 +3,38 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Minus, Plus, ShieldCheck, ShoppingBag, Trash, X, Zap } from "lucide-react"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import { toast } from "sonner"
+import { ConfirmRemoveModal } from "@/components/shared/confirm-remove-modal"
 import { useCart } from "@/contexts/CartProvider"
 
 export function CartDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const { items, totalItems, totalPrice, updateQuantity, removeFromCart } = useCart()
+  const [removeSlug, setRemoveSlug] = useState<string | null>(null)
+  const removeItem = items.find((item) => item.slug === removeSlug)
+
+  const confirmRemove = (slug: string) => {
+    setRemoveSlug(slug)
+  }
+
+  const handleRemoveConfirmed = () => {
+    if (!removeItem) return
+
+    removeFromCart(removeItem.slug)
+    toast.success("Товар удалён из корзины", {
+      description: removeItem.product.name,
+    })
+    setRemoveSlug(null)
+  }
+
+  const decreaseQuantity = (slug: string, quantity: number) => {
+    if (quantity <= 1) {
+      confirmRemove(slug)
+      return
+    }
+
+    updateQuantity(slug, quantity - 1)
+  }
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -83,7 +110,7 @@ export function CartDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () =
                       <div className="cart-muted mt-1 text-xs font-medium">{item.product.price} ₽ за штуку</div>
                       <div className="mt-3 flex items-center justify-between gap-3">
                         <div className="cart-control flex items-center rounded-full p-1">
-                          <button onClick={() => updateQuantity(item.slug, Math.max(0, item.quantity - 1))} className="rounded-full p-1.5 text-[var(--cart-muted)] transition hover:bg-[var(--cart-panel-strong)] hover:text-[var(--cart-foreground)]" aria-label="Уменьшить количество">
+                          <button onClick={() => decreaseQuantity(item.slug, item.quantity)} className="rounded-full p-1.5 text-[var(--cart-muted)] transition hover:bg-[var(--cart-panel-strong)] hover:text-[var(--cart-foreground)]" aria-label="Уменьшить количество">
                             <Minus className="h-3.5 w-3.5" />
                           </button>
                           <span className="w-8 text-center text-sm font-black">{item.quantity}</span>
@@ -91,7 +118,7 @@ export function CartDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () =
                             <Plus className="h-3.5 w-3.5" />
                           </button>
                         </div>
-                        <button onClick={() => removeFromCart(item.slug)} aria-label="Удалить" className="rounded-full border border-red-500/20 bg-red-500/8 p-2 text-red-300 transition hover:bg-red-500/16 hover:text-red-200">
+                        <button onClick={() => confirmRemove(item.slug)} aria-label="Удалить" className="rounded-full border border-red-500/20 bg-red-500/8 p-2 text-red-300 transition hover:bg-red-500/16 hover:text-red-200">
                           <Trash className="h-4 w-4" />
                         </button>
                       </div>
@@ -117,6 +144,14 @@ export function CartDrawer({ isOpen, onClose }: { isOpen: boolean; onClose: () =
           </Link>
         </div>
       </aside>
+
+      {removeItem && (
+        <ConfirmRemoveModal
+          productName={removeItem.product.name}
+          onCancel={() => setRemoveSlug(null)}
+          onConfirm={handleRemoveConfirmed}
+        />
+      )}
     </>
   )
 }

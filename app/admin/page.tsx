@@ -1,9 +1,18 @@
 import Link from "next/link"
 import { redirect } from "next/navigation"
-import { ArrowRight, Boxes, CircleAlert, EyeOff, Image as ImageIcon, PackageCheck, Sparkles, Store, Tags } from "lucide-react"
+import { ArrowRight, Boxes, CircleAlert, EyeOff, Image as ImageIcon, PackageCheck, Palette, Sparkles, Store, Tags } from "lucide-react"
+import { saveSiteBackgroundAction } from "@/app/admin/actions"
 import { AdminShell } from "@/components/admin/admin-shell"
 import { isAdminAuthenticated } from "@/lib/admin-auth"
 import { getProducts } from "@/lib/product-store"
+import { getSiteSettings, type SiteBackgroundMode } from "@/lib/site-settings"
+
+const BACKGROUND_OPTIONS: Array<{ value: SiteBackgroundMode; label: string; description: string }> = [
+  { value: "auto", label: "Авто", description: "Системный светлый или темный фон" },
+  { value: "soft-gray", label: "Серый", description: "Мягкий технический градиент" },
+  { value: "clean", label: "Чистый", description: "Спокойный почти однотонный фон" },
+  { value: "contrast", label: "Контраст", description: "Более глубокая витринная сцена" },
+]
 
 export default async function AdminDashboardPage() {
   if (!(await isAdminAuthenticated())) {
@@ -11,6 +20,7 @@ export default async function AdminDashboardPage() {
   }
 
   const products = await getProducts({ includeDrafts: true })
+  const settings = await getSiteSettings()
   const published = products.filter((product) => product.isPublished !== false)
   const available = products.filter((product) => product.isAvailable)
   const hidden = products.filter((product) => product.isPublished === false)
@@ -129,6 +139,37 @@ export default async function AdminDashboardPage() {
             })}
           </div>
         </aside>
+      </section>
+
+      <section className="mt-6 surface-card rounded-[2rem] p-6">
+        <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <div className="mb-3 flex items-center gap-2 text-sm font-black text-[#65707b] dark:text-[#ffd600]">
+              <Palette className="h-4 w-4" />
+              Внешний фон
+            </div>
+            <h2 className="text-2xl font-black text-[#111315] dark:text-white">Фон сайта</h2>
+            <p className="cart-muted mt-2 max-w-2xl text-sm leading-6">
+              Основной режим - автоматический: фон подстраивается под светлую или темную тему системы.
+            </p>
+          </div>
+          <span className="w-fit rounded-full bg-slate-200 px-3 py-1 text-xs font-black text-[#111315] dark:bg-white/10 dark:text-white">
+            {BACKGROUND_OPTIONS.find((item) => item.value === settings.backgroundMode)?.label ?? "Авто"}
+          </span>
+        </div>
+
+        <form action={saveSiteBackgroundAction} className="grid gap-3 md:grid-cols-4">
+          {BACKGROUND_OPTIONS.map((option) => (
+            <label key={option.value} className={`cursor-pointer rounded-2xl border p-4 transition ${settings.backgroundMode === option.value ? "border-[#ffd600] bg-[#ffd600]/16" : "border-border bg-white/45 hover:border-[#ffd600]/45 dark:bg-white/5"}`}>
+              <input type="radio" name="backgroundMode" value={option.value} defaultChecked={settings.backgroundMode === option.value} className="sr-only" />
+              <span className="block text-sm font-black text-[#111315] dark:text-white">{option.label}</span>
+              <span className="mt-2 block text-xs leading-5 text-[#656b72] dark:text-slate-300">{option.description}</span>
+            </label>
+          ))}
+          <button type="submit" className="brand-button inline-flex items-center justify-center rounded-full px-6 py-4 text-sm font-black md:col-span-4 md:w-fit">
+            Сохранить фон
+          </button>
+        </form>
       </section>
     </AdminShell>
   )
