@@ -82,7 +82,7 @@ export function HomePage({ products, featured }: { products: Product[]; featured
             {FEATURES.map((feature, index) => (
               <AnimatedContent key={feature.title} delay={index * 0.08} distance={28}>
                 <div className="surface-card rounded-2xl p-6">
-                <feature.icon className="mb-5 h-7 w-7 text-[#d0a900]" />
+                <feature.icon className="mb-5 h-7 w-7 text-[#65707b] dark:text-[#ffd600]" />
                 <h3 className="text-lg font-black text-[#111315] dark:text-white">{feature.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-[#656b72] dark:text-slate-300">{feature.desc}</p>
                 </div>
@@ -106,8 +106,9 @@ export function HomePage({ products, featured }: { products: Product[]; featured
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {products.map((product, index) => (
                 <AnimatedContent key={product.slug} delay={index * 0.06} distance={30}>
-                  <Link href={`/products/${product.slug}`} className="group surface-card overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-1">
-                  <div className="relative aspect-square bg-[#f0f1eb] dark:bg-white/5">
+                  <Link href={`/products/${product.slug}`} className="group surface-card relative overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-1">
+                  <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-slate-300 via-white to-slate-400/70 dark:from-white/10 dark:via-white/30 dark:to-white/10" />
+                  <div className="relative aspect-square overflow-hidden bg-[radial-gradient(circle_at_34%_18%,rgba(255,255,255,0.95),transparent_18rem),linear-gradient(135deg,#eef1f4,#dfe4ea)] dark:bg-[radial-gradient(circle_at_34%_18%,rgba(255,255,255,0.10),transparent_18rem),linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))]">
                     {product.tag && (
                       <span className="absolute left-4 top-4 z-10 rounded-full bg-[#ffd600] px-3 py-1.5 text-xs font-black text-[#111315]">
                         {product.tag}
@@ -121,9 +122,17 @@ export function HomePage({ products, featured }: { products: Product[]; featured
                     <Image src={product.image} alt={product.name} fill className="object-contain p-8 transition duration-500 group-hover:scale-105" />
                   </div>
                   <div className="p-6">
-                    <div className="mb-3 text-xs font-bold uppercase tracking-[0.14em] text-[#8a6f00] dark:text-[#ffd600]">{product.tagline}</div>
+                    <div className="mb-3 text-xs font-bold uppercase tracking-[0.14em] text-[#65707b] dark:text-[#ffd600]">{product.tagline}</div>
                     <h3 className="text-2xl font-black text-[#111315] dark:text-white">{product.name}</h3>
                     <p className="mt-3 min-h-[72px] text-sm leading-6 text-[#656b72] dark:text-slate-300">{product.description}</p>
+                    <div className="mt-5 grid grid-cols-2 gap-2">
+                      {product.highlights.slice(0, 2).map((item) => (
+                        <div key={item.label} className="soft-panel rounded-2xl p-3">
+                          <div className="text-sm font-black text-[#111315] dark:text-white">{item.value}</div>
+                          <div className="mt-0.5 text-[11px] text-[#656b72] dark:text-slate-300">{item.label}</div>
+                        </div>
+                      ))}
+                    </div>
                     <div className="mt-6 flex items-end justify-between gap-4">
                       <div>
                         <span className="text-2xl font-black text-[#111315] dark:text-white">{product.price} ₽</span>

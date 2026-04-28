@@ -45,21 +45,21 @@ export default function WhereToBuyPage() {
         <section className="px-6 pb-16">
           <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-3">
             <div className="surface-card rounded-3xl p-6">
-              <Globe className="mb-5 h-8 w-8 text-[#d0a900] dark:text-[#ffd600]" />
+              <Globe className="mb-5 h-8 w-8 text-[#65707b] dark:text-[#ffd600]" />
               <h3 className="text-xl font-black text-[#111315] dark:text-white">Официальный сайт</h3>
               <p className="mt-3 text-sm leading-7 text-[#656b72] dark:text-slate-300">
                 Полный каталог моделей, подробные карточки товара и оформление заказа напрямую через FMART Россия.
               </p>
             </div>
             <div className="surface-card rounded-3xl p-6">
-              <Store className="mb-5 h-8 w-8 text-[#d0a900] dark:text-[#ffd600]" />
+              <Store className="mb-5 h-8 w-8 text-[#65707b] dark:text-[#ffd600]" />
               <h3 className="text-xl font-black text-[#111315] dark:text-white">Партнёрские площадки</h3>
               <p className="mt-3 text-sm leading-7 text-[#656b72] dark:text-slate-300">
                 Доступны продажи через партнёрские онлайн-площадки и дистрибьюторов в разных регионах.
               </p>
             </div>
             <div className="surface-card rounded-3xl p-6">
-              <Users className="mb-5 h-8 w-8 text-[#d0a900] dark:text-[#ffd600]" />
+              <Users className="mb-5 h-8 w-8 text-[#65707b] dark:text-[#ffd600]" />
               <h3 className="text-xl font-black text-[#111315] dark:text-white">Корпоративные и оптовые заказы</h3>
               <p className="mt-3 text-sm leading-7 text-[#656b72] dark:text-slate-300">
                 Отдел продаж подскажет по объёмам, условиям сотрудничества и персональным предложениям для бизнеса.

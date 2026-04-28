@@ -97,7 +97,7 @@ export default function ContactsPage() {
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#ffd600] text-[#111315] transition group-hover:scale-105">
                   <contact.icon className="h-6 w-6" />
                 </div>
-                <div className="text-xs font-bold uppercase tracking-[0.14em] text-[#8a6f00] dark:text-[#ffd600]">{contact.title}</div>
+                <div className="text-xs font-bold uppercase tracking-[0.14em] text-[#65707b] dark:text-[#ffd600]">{contact.title}</div>
                 <p className="mt-2 text-lg font-black text-[#111315] dark:text-white">{contact.value}</p>
                 <p className="mt-3 text-sm leading-6 text-[#656b72] dark:text-slate-300">{contact.description}</p>
               </a>
@@ -109,7 +109,7 @@ export default function ContactsPage() {
           <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="surface-card rounded-3xl p-7 md:p-8">
               <div className="mb-7 flex items-center gap-3">
-                <Clock className="h-7 w-7 text-[#d0a900] dark:text-[#ffd600]" />
+                <Clock className="h-7 w-7 text-[#65707b] dark:text-[#ffd600]" />
                 <h2 className="text-3xl font-black text-[#111315] dark:text-white">Время работы</h2>
               </div>
               <div className="overflow-hidden rounded-2xl border border-border">

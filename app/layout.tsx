@@ -27,8 +27,9 @@ export default function RootLayout({
         <CartProvider>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
+          storageKey="fmart-theme"
+          defaultTheme="system"
+          enableSystem
           disableTransitionOnChange={false}
         >
           {children}

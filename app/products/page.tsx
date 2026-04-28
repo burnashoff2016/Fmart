@@ -40,9 +40,11 @@ export default async function ProductsPage() {
         <section className="px-6 pb-20">
           <div className="mx-auto grid max-w-6xl gap-6">
             {products.map((product) => (
-              <article key={product.slug} className="surface-card overflow-hidden rounded-3xl">
+              <article key={product.slug} className="surface-card group relative overflow-hidden rounded-3xl transition duration-300 hover:-translate-y-1">
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-slate-300 via-white to-slate-400/70 dark:from-white/10 dark:via-white/30 dark:to-white/10" />
                 <div className="grid gap-0 md:grid-cols-[0.9fr_1.1fr]">
-                  <Link href={`/products/${product.slug}`} className="group relative min-h-[320px] bg-[#f0f1eb] dark:bg-white/5 md:min-h-[420px]">
+                  <Link href={`/products/${product.slug}`} className="relative min-h-[320px] overflow-hidden bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.95),transparent_28rem),linear-gradient(135deg,#eef1f4,#dfe4ea)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.10),transparent_24rem),linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] md:min-h-[420px]">
+                    <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-white/70 blur-3xl dark:bg-white/10" />
                     {product.tag && (
                       <span className="absolute left-5 top-5 z-10 rounded-full bg-[#ffd600] px-4 py-2 text-xs font-black text-[#111315]">
                         {product.tag}
@@ -54,10 +56,18 @@ export default async function ProductsPage() {
                       </span>
                     )}
                     <Image src={product.image} alt={product.name} fill className="object-contain p-10 transition duration-500 group-hover:scale-105" />
+                    <div className="absolute bottom-5 left-5 right-5 grid grid-cols-2 gap-2">
+                      {product.highlights.slice(0, 2).map((item) => (
+                        <div key={item.label} className="rounded-2xl bg-white/72 p-3 ring-1 ring-black/10 backdrop-blur dark:bg-black/32 dark:ring-white/12">
+                          <div className="text-sm font-black text-[#111315] dark:text-white">{item.value}</div>
+                          <div className="mt-0.5 text-[11px] font-semibold text-[#65707b] dark:text-slate-300">{item.label}</div>
+                        </div>
+                      ))}
+                    </div>
                   </Link>
 
                   <div className="flex flex-col justify-center p-7 md:p-10">
-                    <p className="mb-3 text-xs font-bold uppercase tracking-[0.14em] text-[#8a6f00] dark:text-[#ffd600]">{product.tagline}</p>
+                    <p className="mb-3 text-xs font-bold uppercase tracking-[0.14em] text-[#65707b] dark:text-[#ffd600]">{product.tagline}</p>
                     <h2 className="text-3xl font-black text-[#111315] dark:text-white md:text-4xl">{product.name}</h2>
                     <p className="mt-5 max-w-2xl text-base leading-7 text-[#656b72] dark:text-slate-300">{product.description}</p>
 
@@ -75,16 +85,22 @@ export default async function ProductsPage() {
                         <span className="text-3xl font-black text-[#111315] dark:text-white">{product.price} ₽</span>
                         {product.oldPrice && <span className="ml-3 text-base text-[#8b929a] line-through">{product.oldPrice} ₽</span>}
                         <div className="mt-2 flex items-center gap-2 text-sm text-[#656b72] dark:text-slate-300">
-                          <CheckCircle2 className="h-4 w-4 text-[#8a6f00] dark:text-[#ffd600]" />
+                          <CheckCircle2 className="h-4 w-4 text-[#65707b] dark:text-[#ffd600]" />
                           {product.isAvailable ? "В наличии" : "Доступно под заказ"}
                         </div>
                       </div>
                       <div className="flex flex-col gap-3 sm:min-w-[260px]">
-                        <AddToCartButton
-                          product={product}
-                          label="В корзину"
-                          className="brand-button inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-black transition disabled:opacity-50"
-                        />
+                        {product.isAvailable ? (
+                          <AddToCartButton
+                            product={product}
+                            label="В корзину"
+                            className="brand-button inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-black transition disabled:opacity-50"
+                          />
+                        ) : (
+                          <Link href="/contacts" className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-black text-[#34383d] transition hover:bg-black/5 dark:text-white dark:hover:bg-white/10">
+                            Оставить заявку
+                          </Link>
+                        )}
                         <Link href={`/products/${product.slug}`} className="ink-button inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition hover:opacity-90">
                           Подробнее <ArrowRight className="h-4 w-4" />
                         </Link>

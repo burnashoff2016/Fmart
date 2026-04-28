@@ -173,9 +173,9 @@
 
   .site-shell {
     background:
-      linear-gradient(180deg, rgba(255, 214, 0, 0.1), transparent 520px),
-      radial-gradient(circle at 12% 8%, rgba(255, 214, 0, 0.16), transparent 26rem),
-      radial-gradient(circle at 86% 12%, rgba(148, 163, 184, 0.1), transparent 24rem),
+      linear-gradient(180deg, rgba(226, 232, 240, 0.36), transparent 520px),
+      radial-gradient(circle at 12% 8%, rgba(203, 213, 225, 0.34), transparent 28rem),
+      radial-gradient(circle at 86% 12%, rgba(148, 163, 184, 0.14), transparent 24rem),
       var(--background);
     color: var(--foreground);
   }
@@ -212,7 +212,7 @@
   }
 
   .section-eyebrow {
-    color: #8a6f00;
+    color: #65707b;
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.14em;
@@ -229,7 +229,7 @@
 
   .cart-shell {
     background:
-      linear-gradient(180deg, rgba(255, 214, 0, 0.045), transparent 18rem),
+      linear-gradient(180deg, rgba(226, 232, 240, 0.08), transparent 18rem),
       var(--cart-bg);
     border: 1px solid var(--cart-border);
     box-shadow: var(--cart-shadow);

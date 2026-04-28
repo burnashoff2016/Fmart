@@ -56,7 +56,7 @@ export function Navbar() {
           >
             Купить
           </Link>
-          <button onClick={() => setCartOpen(true)} aria-label="Открыть корзину" className="group relative hidden items-center gap-2 overflow-hidden rounded-full border border-[#d0a900]/50 bg-[#111315] px-4 py-2.5 text-white shadow-[0_12px_30px_rgba(18,20,22,0.18)] transition hover:border-[#d0a900] hover:bg-[#1d2024] dark:border-[#ffd600]/35 dark:bg-[#ffd600]/10 dark:shadow-[0_0_30px_rgba(255,214,0,0.10)] dark:hover:border-[#ffd600]/70 dark:hover:bg-[#ffd600]/16 md:inline-flex">
+          <button onClick={() => setCartOpen(true)} aria-label="Открыть корзину" className="group relative hidden items-center gap-2 overflow-hidden rounded-full border border-slate-400/50 bg-[#111315] px-4 py-2.5 text-white shadow-[0_12px_30px_rgba(18,20,22,0.18)] transition hover:border-slate-300 hover:bg-[#1d2024] dark:border-[#ffd600]/35 dark:bg-[#ffd600]/10 dark:shadow-[0_0_30px_rgba(255,214,0,0.10)] dark:hover:border-[#ffd600]/70 dark:hover:bg-[#ffd600]/16 md:inline-flex">
             <span className="absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(255,214,0,0.18),transparent)] opacity-0 transition group-hover:opacity-100" />
             <ShoppingCart className="relative h-5 w-5 text-[#ffd600]" />
             <span className="relative text-sm font-bold">Корзина</span>

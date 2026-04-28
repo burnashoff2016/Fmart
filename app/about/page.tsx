@@ -48,7 +48,7 @@ export default function AboutPage() {
                 FMART Technology Co., Ltd. объединяет исследования, разработку, производство и коммерческое развитие роботизированных решений для автоматизированной уборки.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <span className="rounded-full border border-[#ffd600]/30 bg-[#ffd600]/10 px-4 py-2 text-sm font-bold text-[#8a6f00] dark:text-[#ffd600]">Global R&D</span>
+                <span className="rounded-full border border-slate-300 bg-slate-100/70 px-4 py-2 text-sm font-bold text-[#65707b] dark:border-[#ffd600]/30 dark:bg-[#ffd600]/10 dark:text-[#ffd600]">Global R&D</span>
                 <span className="rounded-full border border-border bg-white/50 px-4 py-2 text-sm font-bold text-[#34383d] dark:bg-white/6 dark:text-white">FMART Russia</span>
               </div>
             </div>
@@ -72,7 +72,7 @@ export default function AboutPage() {
             {STATS.map((stat, index) => (
               <AnimatedContent key={stat.label} delay={index * 0.08} distance={28}>
                 <div className="surface-card rounded-2xl p-6">
-                <stat.icon className="mb-5 h-8 w-8 text-[#d0a900] dark:text-[#ffd600]" />
+                <stat.icon className="mb-5 h-8 w-8 text-[#65707b] dark:text-[#ffd600]" />
                 <div className="text-3xl font-black text-[#111315] dark:text-white">
                   {stat.label === "м² производства" && <CountUp to={30000} suffix="" />}
                   {stat.label === "устройств в год" && <CountUp to={1000000} suffix="+" />}

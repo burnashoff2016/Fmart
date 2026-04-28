@@ -104,7 +104,7 @@ export default function CheckoutPage() {
                           {done ? <Check className="h-5 w-5" /> : <Icon className="h-5 w-5" />}
                         </span>
                         <span>
-                          <span className="block text-xs font-bold uppercase tracking-[0.14em] text-[#8a6f00] dark:text-[#ffd600]">Шаг {item.id}</span>
+                          <span className="block text-xs font-bold uppercase tracking-[0.14em] text-[#65707b] dark:text-[#ffd600]">Шаг {item.id}</span>
                           <span className="block font-black text-[#111315] dark:text-white">{item.label}</span>
                         </span>
                       </button>

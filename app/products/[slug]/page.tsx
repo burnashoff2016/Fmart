@@ -105,24 +105,34 @@ export default async function ProductPage({ params }: PageProps) {
                 {product.isAvailable ? "В наличии" : "Нет в наличии — оставьте заявку"}
               </div>
 
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <AddToCartButton product={product} className="brand-button inline-flex flex-1 items-center justify-center rounded-full px-8 py-4 text-sm font-black transition" />
-                <Link href="/cart" className="ink-button inline-flex flex-1 items-center justify-center rounded-full px-8 py-4 text-sm font-bold transition hover:opacity-90">
-                  Перейти в корзину
-                </Link>
-              </div>
+              {product.isAvailable ? (
+                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                  <AddToCartButton product={product} className="brand-button inline-flex flex-1 items-center justify-center rounded-full px-8 py-4 text-sm font-black transition" />
+                  <Link href="/cart" className="ink-button inline-flex flex-1 items-center justify-center rounded-full px-8 py-4 text-sm font-bold transition hover:opacity-90">
+                    Перейти в корзину
+                  </Link>
+                </div>
+              ) : (
+                <div className="mt-8 rounded-3xl border border-border bg-black/[0.03] p-5 dark:bg-white/[0.04]">
+                  <p className="text-sm font-bold text-[#111315] dark:text-white">Модель временно недоступна для покупки через корзину.</p>
+                  <p className="mt-2 text-sm leading-6 text-[#656b72] dark:text-slate-300">Оставьте заявку, и менеджер подскажет сроки поставки или поможет подобрать ближайшую альтернативу.</p>
+                  <Link href="/contacts" className="brand-button mt-5 inline-flex rounded-full px-6 py-3 text-sm font-black">
+                    Оставить заявку
+                  </Link>
+                </div>
+              )}
 
               <div className="mt-8 grid grid-cols-3 gap-3">
                 <div className="soft-panel rounded-2xl p-4 text-center">
-                  <Truck className="mx-auto mb-2 h-6 w-6 text-[#8a6f00] dark:text-[#ffd600]" />
+                  <Truck className="mx-auto mb-2 h-6 w-6 text-[#65707b] dark:text-[#ffd600]" />
                   <div className="text-xs font-medium text-[#656b72] dark:text-slate-300">Доставка по РФ</div>
                 </div>
                 <div className="soft-panel rounded-2xl p-4 text-center">
-                  <Shield className="mx-auto mb-2 h-6 w-6 text-[#8a6f00] dark:text-[#ffd600]" />
+                  <Shield className="mx-auto mb-2 h-6 w-6 text-[#65707b] dark:text-[#ffd600]" />
                   <div className="text-xs font-medium text-[#656b72] dark:text-slate-300">Гарантия 1 год</div>
                 </div>
                 <div className="soft-panel rounded-2xl p-4 text-center">
-                  <RotateCcw className="mx-auto mb-2 h-6 w-6 text-[#8a6f00] dark:text-[#ffd600]" />
+                  <RotateCcw className="mx-auto mb-2 h-6 w-6 text-[#65707b] dark:text-[#ffd600]" />
                   <div className="text-xs font-medium text-[#656b72] dark:text-slate-300">Возврат 14 дней</div>
                 </div>
               </div>

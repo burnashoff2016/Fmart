@@ -33,7 +33,7 @@ function highlightsToText(product: Product) {
 function Field({ label, children, hint }: { label: string; children: React.ReactNode; hint?: string }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-xs font-black uppercase tracking-[0.14em] text-[#8a6f00] dark:text-[#ffd600]">{label}</span>
+      <span className="mb-2 block text-xs font-black uppercase tracking-[0.14em] text-[#65707b] dark:text-[#ffd600]">{label}</span>
       {children}
       {hint && <span className="mt-2 block text-xs leading-5 text-[#656b72] dark:text-slate-400">{hint}</span>}
     </label>

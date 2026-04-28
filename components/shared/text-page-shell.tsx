@@ -78,7 +78,7 @@ export function TextPageShell({
           <div className="mx-auto max-w-6xl">
             <AnimatedContent>
               <div className="surface-card rounded-[2rem] p-6 md:p-10">
-                <div className="mx-auto max-w-4xl space-y-8 text-[#34383d] dark:text-slate-200 [&_h2]:text-2xl [&_h2]:font-black [&_h2]:text-[#111315] [&_h2]:dark:text-white [&_h3]:text-xl [&_h3]:font-black [&_h3]:text-[#111315] [&_h3]:dark:text-white [&_li]:leading-7 [&_li]:text-[#656b72] [&_li]:dark:text-slate-300 [&_p]:leading-8 [&_p]:text-[#656b72] [&_p]:dark:text-slate-300 [&_ul]:space-y-3 [&_ul]:pl-5 [&_ul]:marker:text-[#d0a900] [&_ul]:dark:marker:text-[#ffd600]">
+                <div className="mx-auto max-w-4xl space-y-8 text-[#34383d] dark:text-slate-200 [&_h2]:text-2xl [&_h2]:font-black [&_h2]:text-[#111315] [&_h2]:dark:text-white [&_h3]:text-xl [&_h3]:font-black [&_h3]:text-[#111315] [&_h3]:dark:text-white [&_li]:leading-7 [&_li]:text-[#656b72] [&_li]:dark:text-slate-300 [&_p]:leading-8 [&_p]:text-[#656b72] [&_p]:dark:text-slate-300 [&_ul]:space-y-3 [&_ul]:pl-5 [&_ul]:marker:text-[#65707b] [&_ul]:dark:marker:text-[#ffd600]">
                   {children}
                 </div>
               </div>

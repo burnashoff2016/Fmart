@@ -50,21 +50,21 @@ export default function DeliveryPage() {
         <section className="px-6 pb-16">
           <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-3">
             <div className="surface-card rounded-3xl p-6">
-              <PackageCheck className="mb-5 h-8 w-8 text-[#d0a900] dark:text-[#ffd600]" />
+              <PackageCheck className="mb-5 h-8 w-8 text-[#65707b] dark:text-[#ffd600]" />
               <h3 className="text-xl font-black text-[#111315] dark:text-white">Условия доставки</h3>
               <p className="mt-3 text-sm leading-7 text-[#656b72] dark:text-slate-300">
                 Доставка осуществляется курьером, транспортными службами и через самовывоз из офисов продаж по согласованию.
               </p>
             </div>
             <div className="surface-card rounded-3xl p-6">
-              <MapPin className="mb-5 h-8 w-8 text-[#d0a900] dark:text-[#ffd600]" />
+              <MapPin className="mb-5 h-8 w-8 text-[#65707b] dark:text-[#ffd600]" />
               <h3 className="text-xl font-black text-[#111315] dark:text-white">География</h3>
               <p className="mt-3 text-sm leading-7 text-[#656b72] dark:text-slate-300">
                 Работаем по всей России и с рядом направлений по СНГ. Точный маршрут и стоимость рассчитываются отдельно.
               </p>
             </div>
             <div className="surface-card rounded-3xl p-6">
-              <ShieldCheck className="mb-5 h-8 w-8 text-[#d0a900] dark:text-[#ffd600]" />
+              <ShieldCheck className="mb-5 h-8 w-8 text-[#65707b] dark:text-[#ffd600]" />
               <h3 className="text-xl font-black text-[#111315] dark:text-white">Сроки</h3>
               <p className="mt-3 text-sm leading-7 text-[#656b72] dark:text-slate-300">
                 Обычно доставка занимает 3–7 рабочих дней, но по регионам сроки могут отличаться в зависимости от направления.

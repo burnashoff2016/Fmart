@@ -57,7 +57,7 @@ export default async function AdminDashboardPage() {
       <section className="mt-6 surface-card rounded-[2rem] p-6">
         <div className="mb-5 flex items-center justify-between gap-4">
           <h2 className="text-2xl font-black text-[#111315] dark:text-white">Последние товары</h2>
-          <Link href="/admin/products" className="text-sm font-black text-[#8a6f00] transition hover:text-[#111315] dark:text-[#ffd600] dark:hover:text-white">
+          <Link href="/admin/products" className="text-sm font-black text-[#65707b] transition hover:text-[#111315] dark:text-[#ffd600] dark:hover:text-white">
             Открыть все
           </Link>
         </div>

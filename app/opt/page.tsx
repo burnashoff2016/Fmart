@@ -45,21 +45,21 @@ export default function OptPage() {
         <section className="px-6 pb-16">
           <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-3">
             <div className="surface-card rounded-3xl p-6">
-              <Boxes className="mb-5 h-8 w-8 text-[#d0a900] dark:text-[#ffd600]" />
+              <Boxes className="mb-5 h-8 w-8 text-[#65707b] dark:text-[#ffd600]" />
               <h3 className="text-xl font-black text-[#111315] dark:text-white">Минимальный заказ</h3>
               <p className="mt-3 text-sm leading-7 text-[#656b72] dark:text-slate-300">
                 Можно начать с умеренного объёма и перейти к расширенной матрице после теста спроса и первых поставок.
               </p>
             </div>
             <div className="surface-card rounded-3xl p-6">
-              <Truck className="mb-5 h-8 w-8 text-[#d0a900] dark:text-[#ffd600]" />
+              <Truck className="mb-5 h-8 w-8 text-[#65707b] dark:text-[#ffd600]" />
               <h3 className="text-xl font-black text-[#111315] dark:text-white">Логистика</h3>
               <p className="mt-3 text-sm leading-7 text-[#656b72] dark:text-slate-300">
                 Организуем поставки по регионам, согласуем сроки, упаковку и маршрут с учётом особенностей вашего бизнеса.
               </p>
             </div>
             <div className="surface-card rounded-3xl p-6">
-              <Headphones className="mb-5 h-8 w-8 text-[#d0a900] dark:text-[#ffd600]" />
+              <Headphones className="mb-5 h-8 w-8 text-[#65707b] dark:text-[#ffd600]" />
               <h3 className="text-xl font-black text-[#111315] dark:text-white">Поддержка</h3>
               <p className="mt-3 text-sm leading-7 text-[#656b72] dark:text-slate-300">
                 Менеджеры помогают с подбором моделей, презентацией продукта, материалами для продаж и запуском партнёрского направления.

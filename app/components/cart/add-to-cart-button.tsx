@@ -6,6 +6,11 @@ import { useCart } from "@/app/contexts/CartProvider"
 export function AddToCartButton({ product, className, label }: { product: Product; className?: string; label?: string }) {
   const { addToCart } = useCart()
   const text = label ?? 'Добавить в корзину'
+
+  if (!product.isAvailable) {
+    return null
+  }
+
   return (
     <button
       onClick={() => addToCart(product, 1)}
