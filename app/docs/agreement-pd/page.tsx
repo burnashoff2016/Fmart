@@ -1,4 +1,5 @@
 import { TextPageShell } from "@/components/shared/text-page-shell"
+import { SourcePageContent } from "@/components/shared/source-page-content"
 
 export default function AgreementPDPage() {
   return (
@@ -8,14 +9,7 @@ export default function AgreementPDPage() {
       description="Основные принципы, цели и правила обработки персональных данных, передаваемых через сайт FMART Россия."
       badge="FMART data"
     >
-      <h2>Основные принципы</h2>
-      <p>Обработка персональных данных осуществляется в объёме, необходимом для связи с клиентом, выполнения обязательств продавца и сопровождения заказа.</p>
-      <h2>Что включает обработка</h2>
-      <ul>
-        <li>Сбор и хранение сведений, указанных пользователем.</li>
-        <li>Уточнение данных для оформления покупки и доставки.</li>
-        <li>Использование информации для обратной связи и поддержки.</li>
-      </ul>
+      <SourcePageContent slug="agreement-pd" />
     </TextPageShell>
   )
 }

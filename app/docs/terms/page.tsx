@@ -1,4 +1,5 @@
 import { TextPageShell } from "@/components/shared/text-page-shell"
+import { SourcePageContent } from "@/components/shared/source-page-content"
 
 export default function TermsPage() {
   return (
@@ -8,14 +9,7 @@ export default function TermsPage() {
       description="Основные условия использования сайта FMART Россия, взаимодействия с контентом, формами и сервисными разделами."
       badge="FMART terms"
     >
-      <h2>Назначение документа</h2>
-      <p>Пользовательское соглашение регулирует правила использования сайта FMART Россия и общие принципы взаимодействия пользователя с сервисом.</p>
-      <h2>Что важно учитывать</h2>
-      <ul>
-        <li>Информация на сайте носит справочный и коммерческий характер.</li>
-        <li>Отправка формы означает согласие на обработку переданных данных в рамках обращения.</li>
-        <li>Администрация сайта вправе обновлять контент, структуру и условия использования ресурса.</li>
-      </ul>
+      <SourcePageContent slug="terms" />
     </TextPageShell>
   )
 }

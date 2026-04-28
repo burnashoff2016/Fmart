@@ -2,6 +2,7 @@ import { Navbar } from "@/components/shared/navbar"
 import { Footer } from "@/components/shared/footer"
 import Link from "next/link"
 import { ContactForm } from "@/components/shared/contact-form"
+import { SourcePageContent } from "@/components/shared/source-page-content"
 import { Boxes, Handshake, Headphones, Truck } from "lucide-react"
 
 export const metadata = {
@@ -39,6 +40,12 @@ export default function OptPage() {
                 Поддерживаем переговоры по ассортименту, логистике, маркетинговому сопровождению и персональным условиям под канал продаж.
               </p>
             </div>
+          </div>
+        </section>
+
+        <section className="px-6 pb-16">
+          <div className="surface-card mx-auto max-w-6xl rounded-[2rem] p-6 md:p-10">
+            <SourcePageContent slug="opt" />
           </div>
         </section>
 

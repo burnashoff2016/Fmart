@@ -12,7 +12,10 @@ export interface Product {
   isPublished?: boolean
   sortOrder?: number
   tag?: string
+  sku?: string
+  sourceNote?: string
   image: string
+  gallery?: string[]
   seoTitle?: string
   seoDescription?: string
   features: string[]

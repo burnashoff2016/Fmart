@@ -3,6 +3,7 @@ import { Clock, Mail, MapPin, MessageCircle, Phone, Send, ShieldCheck } from "lu
 import { Navbar } from "@/components/shared/navbar"
 import { Footer } from "@/components/shared/footer"
 import { ContactForm } from "@/components/shared/contact-form"
+import { SourcePageContent } from "@/components/shared/source-page-content"
 
 export const metadata: Metadata = {
   title: "Контакты — FMart Россия",
@@ -81,6 +82,12 @@ export default function ContactsPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="px-6 py-10">
+          <div className="surface-card mx-auto max-w-6xl rounded-[2rem] p-6 md:p-10">
+            <SourcePageContent slug="contacts" />
           </div>
         </section>
 

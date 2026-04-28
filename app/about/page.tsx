@@ -4,6 +4,7 @@ import { Award, Factory, Globe, ShieldCheck, Sparkles, Users } from "lucide-reac
 import { Navbar } from "@/components/shared/navbar"
 import { Footer } from "@/components/shared/footer"
 import { ContactForm } from "@/components/shared/contact-form"
+import { SourcePageContent } from "@/components/shared/source-page-content"
 import { AnimatedContent } from "@/components/reactbits/animated-content"
 import { CountUp } from "@/components/reactbits/count-up"
 
@@ -64,6 +65,12 @@ export default function AboutPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="px-6 py-10">
+          <div className="surface-card mx-auto max-w-6xl rounded-[2rem] p-6 md:p-10">
+            <SourcePageContent slug="about" />
           </div>
         </section>
 

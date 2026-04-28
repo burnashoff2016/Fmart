@@ -1,4 +1,5 @@
 import { TextPageShell } from "@/components/shared/text-page-shell"
+import { SourcePageContent } from "@/components/shared/source-page-content"
 
 export default function GuaranteesPage() {
   return (
@@ -8,16 +9,7 @@ export default function GuaranteesPage() {
       description="Информация о гарантийном обслуживании, правилах возврата и поддержке техники FMART после покупки."
       badge="FMART care"
     >
-      <h2>Гарантия</h2>
-      <p>На оборудование FMART распространяется официальная гарантия. Срок и порядок гарантийного обслуживания уточняются при покупке и подтверждении заказа.</p>
-      <h2>Возврат</h2>
-      <p>Возврат товара осуществляется в рамках действующего законодательства и правил продавца. Для уточнения процедуры рекомендуем предварительно связаться с менеджером.</p>
-      <h2>Поддержка</h2>
-      <ul>
-        <li>Консультация по эксплуатации устройства.</li>
-        <li>Подсказки по комплектации и диагностике.</li>
-        <li>Сопровождение по вопросам гарантийного обращения.</li>
-      </ul>
+      <SourcePageContent slug="guarantees" />
     </TextPageShell>
   )
 }

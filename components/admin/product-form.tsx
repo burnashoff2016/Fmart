@@ -16,7 +16,10 @@ const emptyProduct: Product = {
   isAvailable: true,
   isPublished: true,
   sortOrder: 999,
+  sku: "",
+  sourceNote: "",
   image: "/placeholder.jpg",
+  gallery: [],
   features: [],
   specs: [],
   highlights: [],
@@ -28,6 +31,10 @@ function specsToText(product: Product) {
 
 function highlightsToText(product: Product) {
   return product.highlights.map((item) => `${item.value} | ${item.label}`).join("\n")
+}
+
+function galleryToText(product: Product) {
+  return (product.gallery ?? []).join("\n")
 }
 
 function Field({ label, children, hint }: { label: string; children: React.ReactNode; hint?: string }) {
@@ -87,6 +94,12 @@ export function ProductForm({ product }: { product?: Product }) {
           <Field label="Метка">
             <input name="tag" defaultValue={value.tag ?? ""} className={inputClass} placeholder="ХИТ ПРОДАЖ" />
           </Field>
+          <Field label="Артикул">
+            <input name="sku" defaultValue={value.sku ?? ""} className={inputClass} placeholder="100011" />
+          </Field>
+          <Field label="Промо-заголовок">
+            <input name="sourceNote" defaultValue={value.sourceNote ?? ""} className={inputClass} placeholder="Стойкие пятна? Не проблема!" />
+          </Field>
           <Field label="Цена">
             <input name="price" defaultValue={value.price} required className={inputClass} placeholder="24 990" />
           </Field>
@@ -130,6 +143,9 @@ export function ProductForm({ product }: { product?: Product }) {
           </Field>
           <Field label="Highlights" hint="Формат: 5300 Па | Мощность">
             <textarea name="highlights" defaultValue={highlightsToText(value)} className={textareaClass} />
+          </Field>
+          <Field label="Галерея" hint="Один путь к фото с новой строки. Первое фото используется как основное.">
+            <textarea name="gallery" defaultValue={galleryToText(value)} className={textareaClass} />
           </Field>
           <div className="grid gap-5 md:grid-cols-2">
             <Field label="SEO title">

@@ -7,6 +7,7 @@ import { Navbar } from "@/components/shared/navbar"
 import { Footer } from "@/components/shared/footer"
 import { ContactForm } from "@/components/shared/contact-form"
 import { AddToCartButton } from "@/app/components/cart/add-to-cart-button"
+import { ProductGallery } from "@/components/product-gallery"
 import { getProductBySlugFromStore, getProducts } from "@/lib/product-store"
 
 export const dynamic = "force-dynamic"
@@ -63,7 +64,7 @@ export default async function ProductPage({ params }: PageProps) {
 
         <section className="px-6 pb-16">
           <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-            <div className="surface-card relative overflow-hidden rounded-3xl bg-[#f0f1eb] dark:bg-white/5">
+            <div className="relative">
               {product.oldPrice && (
                 <span className="absolute left-5 top-5 z-10 rounded-full bg-[#e11d48] px-4 py-2 text-xs font-black text-white">
                   -20%
@@ -74,9 +75,7 @@ export default async function ProductPage({ params }: PageProps) {
                   {product.tag}
                 </span>
               )}
-              <div className="relative aspect-square">
-                <Image src={product.image} alt={product.name} fill className="object-contain p-10" priority />
-              </div>
+              <ProductGallery images={product.gallery ?? [product.image]} name={product.name} />
             </div>
 
             <div>
@@ -104,6 +103,7 @@ export default async function ProductPage({ params }: PageProps) {
                 <Check className="h-4 w-4" />
                 {product.isAvailable ? "В наличии" : "Нет в наличии — оставьте заявку"}
               </div>
+              {product.sku && <p className="mt-3 text-sm font-semibold text-[#656b72] dark:text-slate-300">Артикул: {product.sku}</p>}
 
               {product.isAvailable ? (
                 <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -143,7 +143,8 @@ export default async function ProductPage({ params }: PageProps) {
         <section className="bg-[#f0f1eb] px-6 py-16 dark:bg-white/5">
           <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
             <div>
-              <h2 className="mb-6 text-3xl font-black text-[#111315] dark:text-white">Ключевые особенности</h2>
+              <p className="section-eyebrow mb-3">Ключевые особенности</p>
+              <h2 className="mb-6 text-3xl font-black text-[#111315] dark:text-white">{product.sourceNote ?? "Ключевые особенности"}</h2>
               <div className="grid gap-3">
                 {product.features.map((feature) => (
                   <div key={feature} className="surface-card flex items-center gap-3 rounded-2xl p-4">

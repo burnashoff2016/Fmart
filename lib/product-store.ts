@@ -19,7 +19,10 @@ function normalizeProduct(product: Product, index = 0): Product {
   return {
     ...product,
     slug: product.slug.trim(),
+    sku: product.sku,
+    sourceNote: product.sourceNote,
     image: product.image || "/placeholder.jpg",
+    gallery: product.gallery?.length ? product.gallery : [product.image || "/placeholder.jpg"],
     isPublished: product.isPublished ?? true,
     sortOrder: product.sortOrder ?? index + 1,
     features: product.features ?? [],
